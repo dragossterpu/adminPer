@@ -124,7 +124,7 @@ public class LazyDataUsers extends LazyDataModel<Users> implements Serializable 
 		}
 		else {
 
-			this.setRowCount(userService.getCounCriteria(searchUser));
+			// this.setRowCount(userService.getCounCriteria(searchUser));
 			listado = userService.buscarUsuarioCriteria(first, pageSize, sortField, sortOrder, searchUser);
 		}
 		return listado;

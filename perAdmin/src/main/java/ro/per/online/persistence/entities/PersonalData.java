@@ -7,8 +7,9 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.OneToOne;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -39,15 +40,17 @@ public class PersonalData implements Serializable {
 	private String personalEmail;
 
 	/**
-	 * Judetul.
+	 * Cuerpo al que pertenece el usuario.
 	 */
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne
+	@JoinColumn(name = "PROVINCE_ID", foreignKey = @ForeignKey(name = "FK_U_PROVINCE"))
 	private PProvince province;
 
 	/**
 	 * Localitatea.
 	 */
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne
+	@JoinColumn(name = "LOCALITY_ID", foreignKey = @ForeignKey(name = "FK_U_LOCALITY"))
 	private PLocality locality;
 
 	/**

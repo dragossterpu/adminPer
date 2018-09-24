@@ -91,21 +91,27 @@
 				<p:panelGrid columns="1" id="panelBuscadorUsuarios">					
 					<p:panelGrid id="pestanaUsuarios" columns="1">				
 						<p:panelGrid id="filtroUsuarios" columns="2">
-							<h:outputLabel for="name" styleClass="dialogLabel"
-								value="Nume:" />
-							<p:inputText id="name"
-								value="#{teamBean.usuarioBusqueda.name}" />
-							<h:outputLabel for="lastName" styleClass="dialogLabel"
-								value="NIF:" />
-							<p:inputText id="lastName"
-								value="#{teamBean.usuarioBusqueda.lastName}" />
-							<h:outputLabel for="provincia" styleClass="dialogLabel"
-								value="Organizația/Județul:" />						                   
-                                    <p:selectOneMenu converter="#{trimConverter}" styleClass="dialogLabel" id="provincia" value="#{teamBean.usuarioBusqueda.provinciaSelect}"  >
-                                        <f:selectItem itemLabel="Seleccione una" itemValue="" />
-                                        <f:selectItems value="#{teamBean.listaProvincias}" var="provincia" itemLabel="#{provincia.name}"                                         
-                                                itemValue="#{provincia}" />
-                                    </p:selectOneMenu> 
+							<h:outputLabel for="name" styleClass="dialogLabel" value="Nume:" />
+							<p:inputText id="name" converter="#{trimConverter}" value="#{teamBean.usuarioBusqueda.name}" />
+							
+							<h:outputLabel for="lastName" styleClass="dialogLabel" value="NIF:" />
+							<p:inputText id="lastName" converter="#{trimConverter}" value="#{teamBean.usuarioBusqueda.lastName}" />
+							
+							<h:outputLabel for="provinciaSelect" value="Organizația/Județul:" />
+			                 <p:selectOneMenu value="#{teamBean.usuarioBusqueda.id}" id="provinciaSelect" >
+			                    <f:selectItem itemLabel="Alege una..." itemValue="" />
+			                    <f:selectItems value="#{teamBean.listaProvincias}" var="provinciaSelect" itemLabel="#{provinciaSelect.name}" itemValue="#{provinciaSelect.id}" />
+			                 </p:selectOneMenu>
+							
+							
+<!-- 							a doua care functiona fara selectarea judetului -->
+<!-- 							<h:outputLabel for="provincia" styleClass="dialogLabel" -->
+<!-- 								value="Organizația/Județul:" />						                    -->
+<!--                                     <p:selectOneMenu converter="#{trimConverter}" styleClass="dialogLabel" id="provincia" value="#{teamBean.usuarioBusqueda.provinciaSelect}"  > -->
+<!--                                         <f:selectItem itemLabel="Seleccione una" itemValue="" /> -->
+<!--                                         <f:selectItems value="#{teamBean.listaProvincias}" var="provincia" itemLabel="#{provincia.name}"                                          -->
+<!--                                                 itemValue="#{provincia}" /> -->
+<!--                                     </p:selectOneMenu>  -->
 <!-- 		                    <p:selectOneMenu value="#{teamBean.provinciaSelect}" id="provincia"  styleClass="dialogLabel"  converter="#{trimConverter}"> -->
 <!-- 		                        <f:selectItem itemLabel="Alege una..." itemValue=""  /> -->
 <!-- 		                        <f:selectItems value="#{teamBean.listaProvincias}" var="provincia" itemLabel="#{provincia.name}" itemValue="#{provincia}" /> -->

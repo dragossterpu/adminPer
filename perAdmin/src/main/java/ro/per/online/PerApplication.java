@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.boot.web.servlet.ErrorPageRegistrar;
 import org.springframework.boot.web.servlet.ErrorPageRegistry;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,6 +32,7 @@ import ro.per.online.jsf.scope.FacesViewScope;
  */
 @SpringBootApplication
 @EnableScheduling
+@ServletComponentScan
 public class PerApplication {
 
 	/**

@@ -7,7 +7,7 @@
 		<p:menubar styleClass="navPrimary">			
 			<p:menuitem value=" Acasă" icon="fa fa-fw fa-home" outcome="/index" styleClass="itemInicio" />			
 			<p:submenu label="Utilizatori" icon="fa fa-fw fa-group" styleClass="itemUsuarios">
-				<p:menuitem value="Utilizatori" action="#{userBean.getFormularioBusqueda}"/>
+				<p:menuitem value="Utilizatori" outcome="/users/users"/>
 				<p:menuitem value="Equipa de conducere" outcome="/teams/teams" />
 <!-- 				<p:menuitem value="Statistică membrii" outcome="/enConstruccion" /> -->
 				<p:separator />	

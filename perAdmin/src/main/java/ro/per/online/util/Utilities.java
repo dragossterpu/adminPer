@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -20,12 +21,44 @@ import javax.faces.context.FacesContext;
  *
  */
 public class Utilities {
-	/**
-	 * Evitamos que se pueda instanciar la clase.
-	 */
 
+	/**
+	 * Las clases de utilidad no deben tener constructor publico
+	 *
+	 */
 	private Utilities() {
-		throw new IllegalAccessError("Utility class");
+		// throw new IllegalStateException("Utiles class");
+	}
+
+	/**
+	 * Converts a Map to a List filled with its entries. This is needed since very few if any JSF iteration components
+	 * are able to iterate over a map.
+	 */
+	public static <T, S> List<Map.Entry<T, S>> mapToList(Map<T, S> map) {
+
+		if (map == null) {
+			return null;
+		}
+
+		final List<Map.Entry<T, S>> list = new ArrayList<Map.Entry<T, S>>();
+		list.addAll(map.entrySet());
+
+		return list;
+	}
+
+	/**
+	 * Comprueba si un objeto es nulo o blanco.
+	 * @param obj El objeto a comprobar.
+	 * @return true, Si el objeto es nulo o su valor en String es blanco.
+	 */
+	public static boolean isNullOrBlank(final Object obj) {
+		if (obj == null) {
+			return true;
+		}
+		if ("".equals(obj.toString())) {
+			return true;
+		}
+		return false;
 	}
 
 	// ************* Generating new password PER ********************//

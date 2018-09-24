@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.primefaces.model.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -16,7 +17,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ro.per.online.constantes.Constantes;
+import ro.per.online.persistence.entities.PProvince;
 import ro.per.online.persistence.entities.Users;
+import ro.per.online.persistence.repositories.ProvinceRepository;
 import ro.per.online.persistence.repositories.UserRepository;
 import ro.per.online.services.UserService;
 import ro.per.online.util.FacesUtilities;
@@ -39,6 +42,12 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Autowired
 	private UserRepository userRepository;
+
+	/**
+	 * Repositoriu de PProvince.
+	 */
+	@Autowired
+	private ProvinceRepository provinceRepository;
 
 	/**
 	 * SessionFactory.
@@ -90,7 +99,7 @@ public class UserServiceImpl implements UserService {
 			final SortOrder sortOrder, final UsuarioBusqueda usuarioBusqueda) {
 		try {
 			this.session = this.sessionFactory.openSession();
-			final Criteria criteria = this.session.createCriteria(Users.class);
+			final Criteria criteria = this.session.createCriteria(Users.class, "users");
 
 			criteria.setFirstResult(first);
 			criteria.setMaxResults(pageSize);
@@ -154,7 +163,8 @@ public class UserServiceImpl implements UserService {
 	 * @param usuarioBusqueda UsuarioBusqueda
 	 * @param criteria Criteria
 	 */
-	private void creaCriteria(final UsuarioBusqueda usuarioBusqueda, final Criteria criteria) {
+	private void creaCriteria(final UsuarioBusqueda usuarioBusqueda, Criteria criteria) {
+
 		UtilitiesCriteria.setCondicionCriteriaFechaMayor(usuarioBusqueda.getDateFrom(), criteria,
 				Constantes.FECHACREACION);
 		UtilitiesCriteria.setCondicionCriteriaFechaMenorIgual(usuarioBusqueda.getDateUntil(), criteria,
@@ -163,7 +173,13 @@ public class UserServiceImpl implements UserService {
 		UtilitiesCriteria.setCondicionCriteriaCadenaLike(usuarioBusqueda.getName(), criteria, "name");
 
 		UtilitiesCriteria.setCondicionCriteriaCadenaLike(usuarioBusqueda.getUsername(), criteria, "username");
-
+		if (usuarioBusqueda.getId() != null) {
+			PProvince provincia = provinceRepository.findOne(usuarioBusqueda.getId());
+			criteria.createAlias("users", "usuario");
+			criteria.createAlias("usuario.province", "province");
+			criteria.add(Restrictions.eq("province.id", usuarioBusqueda.getId()));
+			// UtilitiesCriteria.setCondicionCriteriaIgualdadLong(usuarioBusqueda.getId(), criteria, "province");
+		}
 		UtilitiesCriteria.setCondicionCriteriaIgualdadEnum(usuarioBusqueda.getRole(), criteria, "role");
 
 	}

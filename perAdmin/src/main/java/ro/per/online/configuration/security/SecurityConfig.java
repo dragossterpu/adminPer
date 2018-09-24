@@ -89,11 +89,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(Constantes.RUTALOGIN + "/**").anonymous().antMatchers(Constantes.ACCESO).anonymous()
 				.antMatchers(Constantes.INDEX).authenticated().antMatchers(Constantes.ACCESO).anonymous()
 				// Acceso a la administración sólo para el role ADMIN
-				.antMatchers("/administracion/**").hasRole("ADMIN").antMatchers("/usuarioLost/**")
-				.hasAnyRole("ADMIN", "ADMIN").and().formLogin().loginPage(Constantes.RUTALOGIN)
-				.loginProcessingUrl(Constantes.RUTALOGIN).defaultSuccessUrl(Constantes.INDEX)
-				.failureUrl(Constantes.RUTALOGIN).and().logout().logoutUrl("/login/logout")
-				.logoutSuccessUrl(Constantes.RUTALOGIN);
+				.antMatchers("/usuarioLost/**").hasAnyRole("ADMIN", "ADMIN").and().formLogin()
+				.loginPage(Constantes.RUTALOGIN).loginProcessingUrl(Constantes.RUTALOGIN)
+				.defaultSuccessUrl(Constantes.INDEX).failureUrl(Constantes.RUTALOGIN).and().logout()
+				.logoutUrl("/login/logout").logoutSuccessUrl(Constantes.RUTALOGIN);
 		http.logout().logoutUrl(Constantes.RUTALOGOUT).logoutSuccessUrl(Constantes.RUTALOGIN);
 
 		// Inicio de sesión

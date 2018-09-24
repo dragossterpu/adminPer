@@ -57,6 +57,11 @@ public class UsuarioBusqueda implements Serializable {
 	private PProvince provinciaSelect;
 
 	/**
+	 * Filtru judet utilizator.
+	 */
+	private Long id;
+
+	/**
 	 * Filtru localitate utilizator.
 	 */
 	private PLocality locality;

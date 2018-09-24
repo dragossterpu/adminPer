@@ -266,7 +266,7 @@ public class UserBean implements Serializable {
 		this.localidades = new ArrayList<>();
 		this.provinciSelec = new PProvince();
 		// setSearchUsers(model.getSearchUser());
-		searchUsers = new UsuarioBusqueda();
+		this.searchUsers = new UsuarioBusqueda();
 
 		// pentru a se încârca în mod implicit opțiunea "Selectați una ..."
 

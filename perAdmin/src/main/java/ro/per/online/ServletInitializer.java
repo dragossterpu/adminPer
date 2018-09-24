@@ -13,6 +13,8 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
 	/**
 	 * Inidicamos la clase que contiene el método main para que arranque Spring Boot.
+	 * @param application constructor de la aplicación de spring
+	 * @return constructor de aplicación spring
 	 */
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {

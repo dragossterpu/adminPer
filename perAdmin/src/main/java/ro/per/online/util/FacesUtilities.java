@@ -26,12 +26,10 @@ public class FacesUtilities {
 	 * @author STAD
 	 * @param pagina deseada
 	 */
-	public void redirect(String pagina) {
-		FacesContext ctx = FacesContext.getCurrentInstance();
-		ExternalContext extContext = ctx.getExternalContext();
-
-		String url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, pagina));
-
+	public void redirect(final String pagina) {
+		final FacesContext ctx = FacesContext.getCurrentInstance();
+		final ExternalContext extContext = ctx.getExternalContext();
+		final String url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, pagina));
 		try {
 			extContext.redirect(url);
 		}
@@ -47,11 +45,11 @@ public class FacesUtilities {
 	 * @param pagina deseada
 	 * @param paramGET cadena con parametros que se quieran pasar a la página destino separados por '&amp;'
 	 */
-	public void redirect(String pagina, String paramGET) {
-		FacesContext ctx = FacesContext.getCurrentInstance();
-		ExternalContext extContext = ctx.getExternalContext();
+	public void redirect(final String pagina, final String paramGET) {
+		final FacesContext ctx = FacesContext.getCurrentInstance();
+		final ExternalContext extContext = ctx.getExternalContext();
 
-		String url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, pagina));
+		final String url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, pagina));
 
 		try {
 			extContext.redirect(url + "?" + paramGET);
@@ -70,7 +68,8 @@ public class FacesUtilities {
 	 * @param summary resumen
 	 * @param detail detalles del mensaje
 	 */
-	public static void setMensajeConfirmacionDialog(Severity severity, String summary, String detail) {
+	public static void setMensajeConfirmacionDialog(final Severity severity, final String summary,
+			final String detail) {
 		setMensajeConfirmacionDialog(severity, summary, detail, "dialogMessage");
 	}
 
@@ -83,10 +82,10 @@ public class FacesUtilities {
 	 * @param detail detalles del mensaje
 	 * @param widgetVarName Nombre del cuadro de diálogo
 	 */
-	public static void setMensajeConfirmacionDialog(Severity severity, String summary, String detail,
-			String widgetVarName) {
-		RequestContext context = RequestContext.getCurrentInstance();
-		FacesMessage message = new FacesMessage(severity, summary, detail);
+	public static void setMensajeConfirmacionDialog(final Severity severity, final String summary, final String detail,
+			final String widgetVarName) {
+		final RequestContext context = RequestContext.getCurrentInstance();
+		final FacesMessage message = new FacesMessage(severity, summary, detail);
 		FacesContext.getCurrentInstance().addMessage(widgetVarName, message);
 		context.execute("PF('" + widgetVarName + "').show()");
 	}
@@ -100,8 +99,9 @@ public class FacesUtilities {
 	 * @param detail detalles del mensaje
 	 * @param idMensaje identificador del componente "message/s" de PrimeFaces donde se desea mostrar
 	 */
-	public static void setMensajeInformativo(Severity severity, String summary, String detail, String idMensaje) {
-		FacesMessage message = new FacesMessage(severity, summary, detail);
+	public static void setMensajeInformativo(final Severity severity, final String summary, final String detail,
+			final String idMensaje) {
+		final FacesMessage message = new FacesMessage(severity, summary, detail);
 		FacesContext.getCurrentInstance().addMessage(idMensaje, message);
 	}
 

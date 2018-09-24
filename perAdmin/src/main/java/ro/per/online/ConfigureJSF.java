@@ -33,7 +33,7 @@ public class ConfigureJSF {
 	 * Clase que hereda de org.springframework.boot.web.servlet.ServletRegistrationBean para poder sobreescribir el
 	 * método onStartup y definir el FacesInitializer de JSF.
 	 * 
-	 * @author EZENTIS
+	 * @author ATOS
 	 *
 	 */
 	public class JsfServletRegistrationBean extends ServletRegistrationBean {

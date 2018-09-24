@@ -207,7 +207,6 @@ public class TeamBean implements Serializable {
 	 * Căutați utilizatori pe baza unui filtru.
 	 */
 	public void buscarUsuarios() {
-
 		modelUser.setSearchUser(usuarioBusqueda);
 		modelUser.load(0, Constantes.TAMPAGINA, "dateCreate", SortOrder.DESCENDING, null);
 	}
@@ -261,7 +260,7 @@ public class TeamBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		// provinciaSelect = new PProvince();
-		usuarioBusqueda = new UsuarioBusqueda();
+		this.usuarioBusqueda = new UsuarioBusqueda();
 		this.listaTeam = new ArrayList<>();
 		this.listaTeam = teamService.fiindByTeam();
 	}

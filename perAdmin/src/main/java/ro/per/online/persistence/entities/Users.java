@@ -83,4 +83,16 @@ public class Users extends AbstractEntity implements Serializable {
 	@Column(name = "email", length = 100, nullable = false)
 	private String email;
 
+	/**
+	 * Devuelve el nombre completo del usuario.
+	 * 
+	 * @return Cadena formada por la concatenación de nombre y apellidos del usuario
+	 */
+	public String getNombreCompleto() {
+		StringBuilder nombreCompleto = new StringBuilder();
+		nombreCompleto.append(name);
+		nombreCompleto.append(' ');
+		nombreCompleto.append(lastName);
+		return nombreCompleto.toString();
+	}
 }
