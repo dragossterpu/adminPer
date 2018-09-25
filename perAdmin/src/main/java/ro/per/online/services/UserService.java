@@ -51,4 +51,11 @@ public interface UserService {
 	List<Users> buscarUsuarioCriteria(int first, int pageSize, String sortField, SortOrder sortOrder,
 			UsuarioBusqueda searchUser);
 
+	/**
+	 * Guarda en base de datos el usuario.
+	 * 
+	 * @param entity Usuario a guardar
+	 * @return Usuario guardado.
+	 */
+	Users save(Users entity);
 }

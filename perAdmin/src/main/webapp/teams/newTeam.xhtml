@@ -17,7 +17,7 @@
 								resizableColumns="true" pageLinks="4" paginatorAlwaysVisible="false" paginatorPosition="botton"
 								rendered="#{not empty teamBean.usuariosSeleccionadosFinales}"
 								rowKey="#{usuario.username}">
-								<f:facet name="header">Posibili utilizatori candidați</f:facet>
+								<f:facet name="header"> Membru candidat pentru a intra în echipa de conducere</f:facet>
 								<p:column headerText="Nume" style="width:65%;">
 									<h:outputText value="#{usuario.name}" />
 								</p:column>
@@ -27,6 +27,7 @@
 								<p:column headerText="Email" style="width:20%;" styleClass="text-center">
 									<h:outputText value="#{usuario.email}" />
 								</p:column>
+								
 								<p:column styleClass="botonTabla text-center" exportable="false"
 									toggleable="false" style="width:5%;">
 									<p:commandButton title="Eliminar" icon="fa fa-trash" styleClass="modBtn"
@@ -94,30 +95,19 @@
 							<h:outputLabel for="name" styleClass="dialogLabel" value="Nume:" />
 							<p:inputText id="name" converter="#{trimConverter}" value="#{teamBean.usuarioBusqueda.name}" />
 							
-							<h:outputLabel for="lastName" styleClass="dialogLabel" value="NIF:" />
+							<h:outputLabel for="lastName" styleClass="dialogLabel" value="Prenume:" />
 							<p:inputText id="lastName" converter="#{trimConverter}" value="#{teamBean.usuarioBusqueda.lastName}" />
 							
-							<h:outputLabel for="provinciaSelect" value="Organizația/Județul:" />
+							<h:outputLabel for="provinciaSelect" value="Organizația/Județul:" styleClass="dialogLabel"/>
 			                 <p:selectOneMenu value="#{teamBean.usuarioBusqueda.id}" id="provinciaSelect" >
 			                    <f:selectItem itemLabel="Alege una..." itemValue="" />
 			                    <f:selectItems value="#{teamBean.listaProvincias}" var="provinciaSelect" itemLabel="#{provinciaSelect.name}" itemValue="#{provinciaSelect.id}" />
 			                 </p:selectOneMenu>
-							
-							
-<!-- 							a doua care functiona fara selectarea judetului -->
-<!-- 							<h:outputLabel for="provincia" styleClass="dialogLabel" -->
-<!-- 								value="Organizația/Județul:" />						                    -->
-<!--                                     <p:selectOneMenu converter="#{trimConverter}" styleClass="dialogLabel" id="provincia" value="#{teamBean.usuarioBusqueda.provinciaSelect}"  > -->
-<!--                                         <f:selectItem itemLabel="Seleccione una" itemValue="" /> -->
-<!--                                         <f:selectItems value="#{teamBean.listaProvincias}" var="provincia" itemLabel="#{provincia.name}"                                          -->
-<!--                                                 itemValue="#{provincia}" /> -->
-<!--                                     </p:selectOneMenu>  -->
-<!-- 		                    <p:selectOneMenu value="#{teamBean.provinciaSelect}" id="provincia"  styleClass="dialogLabel"  converter="#{trimConverter}"> -->
-<!-- 		                        <f:selectItem itemLabel="Alege una..." itemValue=""  /> -->
-<!-- 		                        <f:selectItems value="#{teamBean.listaProvincias}" var="provincia" itemLabel="#{provincia.name}" itemValue="#{provincia}" /> -->
-<!-- 		                     </p:selectOneMenu> -->
 						</p:panelGrid>
-
+<!-- 						 <p:commandButton actionListener="#{teamBean.alta}" id="crear"  -->
+<!-- 						 value="Alta masiva" icon="fa fa-fw fa-save" onstart="PF('statusDialog').show()"  -->
+<!-- 						 onsuccess="PF('statusDialog').hide()" /> -->
+                
 						<p:commandButton action="#{teamBean.buscarUsuarios()}"
 							value="Căutare" icon="fa fa-search"
 							update=":formBusquedaUsuarios:tablaUsuarios"
@@ -132,27 +122,13 @@
 							paginator="true" resizableColumns="true" lazy="true"
 							emptyMessage="Nu există niciun rezultat care să corespundă parametrilor căutării dvs.">
 							<p:ajax event="page" listener="#{teamBean.onChangePageUsuarios()}" />
-							<p:ajax event="rowUnselectCheckbox" listener="#{teamBean.onRowUnSelectedUser}" />
-							<p:ajax event="rowSelectCheckbox" listener="#{teamBean.onRowSelectedUser}" />
-							<p:ajax event="toggleSelect" listener="#{teamBean.onToggleSelectUsers}" global="true" />
-							
-							<p:column selectionMode="multiple"
-								style="width:16px;text-align:center" />
-
-							<p:column headerText="Nume" width="150">										
-								<h:outputText value="#{usuario.name}" />
-							</p:column>
-
-							<p:column headerText="Prenume" width="80">
-								<h:outputText value="#{usuario.lastName}" />
-							</p:column>
-							
+<!-- 							<p:ajax event="rowUnselectCheckbox" listener="#{teamBean.onRowUnSelectedUser}" /> -->
+							<p:ajax event="rowSelectRadio" listener="#{teamBean.onRowSelectedUser}" />
+<!-- 							<p:ajax event="toggleSelect" listener="#{teamBean.onToggleSelectUsers}" global="true" /> -->	
 							<f:facet name="footer">
-      				 				Total: #{teamBean.modelUser.rowCount} registros
+      				 				Total: #{teamBean.modelUser.rowCount} membrii filtrați
    							</f:facet>
-						</p:dataTable>
-								
-
+						</p:dataTable>								
 					</p:panelGrid>
 					
 				</p:panelGrid>	
