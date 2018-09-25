@@ -125,6 +125,17 @@
 <!-- 							<p:ajax event="rowUnselectCheckbox" listener="#{teamBean.onRowUnSelectedUser}" /> -->
 							<p:ajax event="rowSelectRadio" listener="#{teamBean.onRowSelectedUser}" />
 <!-- 							<p:ajax event="toggleSelect" listener="#{teamBean.onToggleSelectUsers}" global="true" /> -->	
+							<p:column selectionMode="single"
+								style="width:16px;text-align:center" />
+							
+							<p:column headerText="Nume" width="150">										
+								<h:outputText value="#{usuario.name}" />
+							</p:column>
+
+							<p:column headerText="Prenume" width="80">
+								<h:outputText value="#{usuario.lastName}" />
+							</p:column>
+							
 							<f:facet name="footer">
       				 				Total: #{teamBean.modelUser.rowCount} membrii filtrați
    							</f:facet>
